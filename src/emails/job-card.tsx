@@ -147,7 +147,7 @@ export const JobCard = (
                   <Img className={"inline mx-1"} src={baseURL + "linkedin.png"} height={32} width={32} alt={"linkedin"} />
                 </Link>
                 <Link href={links.telegram}>
-                  <Img className={"inline mx-1"} src={baseURL + "telegram.png"} height={32} width={32} alt={"telegram"} />
+                  <Img className={"inline mx-1"} src={baseURL + "facebook.png"} height={32} width={32} alt={"telegram"} />
                 </Link>
                 <Link className={links.email}>
                   <Img className={"inline mx-1"} src={baseURL + "email.png"} height={32} width={32} alt={"mail"} />
