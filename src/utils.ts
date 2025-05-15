@@ -1,3 +1,5 @@
+import { baseURL } from "./constants.js";
+
 export interface RelativeTimeOptions {
   short: boolean, locale: Intl.LocalesArgument
 }
@@ -38,8 +40,6 @@ export function relativeTime(
 
   return 'just now';
 }
-
-const baseURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/";
 
 export function match(matchScore: number){
   const data = {

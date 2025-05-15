@@ -56,6 +56,7 @@ export const jobOpenings: JobOpening[] = [
   }
 ]
 
+export const baseURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/";
 export const logoURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/logo.png"
 
 export const links = {

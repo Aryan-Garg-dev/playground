@@ -3,7 +3,7 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import { formatNum, match, relativeTime } from "../utils.js";
-import { JobOpening, jobOpenings as openings, links, logoURL } from "../constants.js";
+import { baseURL, JobOpening, jobOpenings as openings, links, logoURL } from "../constants.js";
 
 interface JobCardProps {
   jobOpenings: JobOpening[],
@@ -144,13 +144,13 @@ export const JobCard = (
               />
               <Section className={"w-fit mt-4 mb-2 mx-auto"}>
                 <Link href={links.linkedin}>
-                  <Img className={"inline mx-1"} src={"https://img.icons8.com/ios-filled/32/linkedin.png"} height={32} width={32} alt={"linkedin"} />
+                  <Img className={"inline mx-1"} src={baseURL + "linkedin.png"} height={32} width={32} alt={"linkedin"} />
                 </Link>
                 <Link href={links.telegram}>
-                  <Img className={"inline mx-1"} src={"https://img.icons8.com/ios-filled/32/telegram.png"} height={32} width={32} alt={"telegram"} />
+                  <Img className={"inline mx-1"} src={baseURL + "telegram.png"} height={32} width={32} alt={"telegram"} />
                 </Link>
                 <Link className={links.email}>
-                  <Img className={"inline mx-1"} src={"https://img.icons8.com/ios-filled/32/apple-mail.png"} height={32} width={32} alt={"mail"} />
+                  <Img className={"inline mx-1"} src={baseURL + "email.png"} height={32} width={32} alt={"mail"} />
                 </Link>
               </Section>
               <Section className={"w-fit mx-auto"}>
