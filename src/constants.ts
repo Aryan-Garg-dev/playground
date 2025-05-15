@@ -56,15 +56,24 @@ export const jobOpenings: JobOpening[] = [
   }
 ]
 
+export const logoURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/logo.png"
+
 export const links = {
-  linkedin: "https://google.com/",
-  telegram: "https://google.com/",
-  email: "https://google.com/",
-  aboutUs: "https://google.com/",
-  blogs: "https://google.com/",
-  privacyPolicy: "https://google.com/",
-  TOS: "https://google.com/",
+  linkedin: "https://linkedin.com/company/myjobbai",
+  telegram: "https://t.me/myjobb_ai",
+  email: "mailto:support@myjobb.ai",
+  aboutUs: "https://myjobb.ai/about-us",
+  blogs: "https://myjobb.ai/blog",
+  privacyPolicy: "https://myjobb.ai/privacy-policy",
+  TOS: "https://myjobb.ai/terms-of-service",
   unsubscribe: "https://google.com/",
-  viewMoreOpportunities: "https://google.com/"
+  viewMoreOpportunities: "https://dashboard.myjobb.ai",
+  site: "https://myjobb.ai/"
+}
+
+export const testimonial = {
+  text: "Job searching has never been this easy! The AI matches were perfect, and I got interview calls within hours.",
+  name: "Ishita Sharma",
+  username: "ishita"
 }
 

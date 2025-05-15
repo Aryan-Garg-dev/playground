@@ -3,7 +3,7 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import { formatNum, match, relativeTime } from "../utils.js";
-import { JobOpening, jobOpenings as openings, links } from "../constants.js";
+import { JobOpening, jobOpenings as openings, links, logoURL } from "../constants.js";
 
 interface JobCardProps {
   jobOpenings: JobOpening[],
@@ -14,7 +14,7 @@ interface JobCardProps {
   }
 }
 
-const JobCard = (
+export const JobCard = (
   {jobOpenings, testimonial: { text, username, name }}: JobCardProps
 ) => (
   <Html lang={"en"} dir={"ltr"}>
@@ -40,7 +40,7 @@ const JobCard = (
         <Preview>Stay updated with the latest job openings tailored just for you.</Preview>
         <Container className={"mx-auto max-w-sm py-8 px-4 bg-white"}>
           <Img
-            src={"/static/images/logo.png"} alt={"myjobb"}
+            src={logoURL} alt={"myjobb"}
             width={98} height={26}
             className={"mx-auto"}
           />
@@ -51,8 +51,8 @@ const JobCard = (
           </Heading>
           <Text className={"mt-8"}>Here are the top relevant job openings for you!</Text>
           <Section>
-            {jobOpenings.map(job=>(
-              <Section className={"mb-4 px-3 py-4"} style={{
+            {jobOpenings.map((job, index)=>(
+              <Section className={"mb-4 px-3 py-4"} key={index} style={{
                 border: "1px solid #D9D9D9",
                 borderRadius: "24px",
                 boxShadow: "0 2px 4px 0 #00000026"
@@ -69,8 +69,8 @@ const JobCard = (
                   </Column>
                   <Column className={"py-0 px-2 w-full flex-1"}>
                     <span className={"text-[10px] text-[#666666] my-1 p-0 block"}>Posted {relativeTime(job.postedAt)}</span>
-                    <span className={"font-semibold text-[12px] my-1 p-0 block"}>{job.title}</span>
-                    <span className = {"font-medium text-[11px] my-1 p-0 block"}>{job.companyName}</span>
+                    <span className={"font-semibold text-[14px] my-1 p-0 block"}>{job.title}</span>
+                    <span className = {"font-medium text-[12px] my-1 p-0 block"}>{job.companyName}</span>
                   </Column>
                   <Column>
                     <Text className={"py-auto mx-auto text-center text-white my-3"} style={{
@@ -86,13 +86,13 @@ const JobCard = (
                     </Text>
                   </Column>
                 </Row>
-                <Row className={"pl-1 mt-6"}>
+                <Row className={"pl-1 mt-3"}>
                   <Column className={"w-full"}>
                     <span className={"text-[10px] bg-[#E5FCF0] py-0.5 px-1.5"}
                           style={{ borderRadius: "4px" }}
                     >{formatNum(job.applicantsCount)} applicants</span>
                   </Column>
-                  <Column className={"min-w-[87px]"}>
+                  <Column className={"min-w-[90px]"}>
                     <Button href={job.applyLink} className={"text-black py-2 px-3 text-[12px] font-medium"}
                           style={{ backgroundColor: "#00E266", borderRadius: "8px"}}
                     >
@@ -102,7 +102,7 @@ const JobCard = (
                 </Row>
               </Section>
             ))}
-            <Text className={"my-0 mb-2"}>
+            <Text className={"my-0 mb-2 py-2"}>
               New opportunities are added daily, don’t miss out!
             </Text>
             <Button href={links.viewMoreOpportunities} className={"text-black py-3 px-3 text-[14px] font-semibold text-center"}
@@ -138,7 +138,7 @@ const JobCard = (
               borderBottom: "1px solid #D9D9D9"
             }}>
               <Img
-                src={"/static/images/logo.png"} alt={"myjobb"}
+                src={logoURL} alt={"myjobb"}
                 width={98} height={26}
                 className={"mx-auto"}
               />
@@ -165,11 +165,12 @@ const JobCard = (
                 <Link className={"mx-2 text-black text-[13px] font-medium"} href={links.TOS}>TOS</Link>
               </Section>
               <Section className={"w-fit mx-aut mt-2"}>
-                <Link href={links.unsubscribe} className={"underline text-[13px] font-medium text-black underline-offset-2"}>Unsubscribe</Link>
+                <u>
+                  <Link href={links.unsubscribe} className={"text-[13px] font-medium text-black"}>Unsubscribe</Link>
+                </u>
               </Section>
             </Section>
           </Section>
-
         </Container>
       </Body>
     </Tailwind>
@@ -184,5 +185,7 @@ JobCard.PreviewProps = {
     username: "ishita"
   }
 }
+
+console.log()
 
 export default JobCard;

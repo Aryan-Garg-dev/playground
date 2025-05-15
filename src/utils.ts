@@ -39,7 +39,7 @@ export function relativeTime(
   return 'just now';
 }
 
-const baseURL = "/static/images/";
+const baseURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/";
 
 export function match(matchScore: number){
   const data = {
