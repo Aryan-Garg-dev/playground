@@ -56,6 +56,19 @@ export const jobOpenings: JobOpening[] = [
   }
 ]
 
+export interface Blog {
+  tag: string,
+  title: string,
+}
+
+export const blogs: Blog[] = [
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+]
+
 export const baseURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/";
 export const logoURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/logo.png"
 

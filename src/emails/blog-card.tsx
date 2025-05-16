@@ -3,28 +3,26 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import { formatNum, match, relativeTime } from "../utils.js";
-import { baseURL, JobOpening, jobOpenings as openings, links, logoURL } from "../constants.js";
+import { baseURL, Blog, blogs, links, logoURL } from "../constants.js";
 
-interface JobCardProps {
-  jobOpenings: JobOpening[],
-  testimonial: {
-    name: string,
-    username: string,
-    text: string,
-  }
+interface BlogCardProps {
+  firstName: string,
+  blogs: Blog
 }
 
-export const JobCard = (
-  {jobOpenings, testimonial: { text, username, name }}: JobCardProps
+export const BlogCard = (
+  {
+    firstName
+  }: BlogCardProps
 ) => (
   <Html lang={"en"} dir={"ltr"}>
     <Head>
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <meta name="x-apple-disable-message-reformatting"/>
       <meta name="color-scheme" content="light dark"/>
       <meta name="supported-color-schemes" content="light"/>
-      <title>Latest Job Openings Just for You - myjobb</title>
+      <meta name="x-apple-disable-message-reformatting"/>
+      <title>Latest Blogs Just for You - myjobb</title>
       <Font
         fontFamily={"Inter"}
         fallbackFontFamily={["Verdana"]}
@@ -84,11 +82,12 @@ export const JobCard = (
         padding: 0,
         backgroundColor: "#E2FCEDCC !important"
       }}>
-        <Preview>Stay updated with the latest job openings tailored just for you.</Preview>
+        <Preview>Stay updated with the latest blogs.</Preview>
         <Container className={"mx-auto max-w-sm py-8 px-4 !bg-white"} style={{
           backgroundColor: "#fff !important",
           color: "#000 !important",
         }}>
+          {/* Header */}
           <Img
             src={logoURL} alt={"myjobb"}
             width={98} height={26}
@@ -97,93 +96,33 @@ export const JobCard = (
           <Heading className={"p-8 font-bold text-lg rounded-md"} style={{
             background: "linear-gradient(to bottom, #00E2B740, #00E2B700)"
           }}>
-            We Found Jobs That Fit You Perfectly!
+            Essential Reads for Every Job Seeker
           </Heading>
-          <Text className={"mt-8"}>Here are the top relevant job openings for you!</Text>
+
+          {/* User */}
           <Section>
-            {jobOpenings.map((job, index)=>(
-              <Section className={"mb-4 px-3 py-4"} key={index} style={{
-                border: "1px solid #D9D9D9",
-                borderRadius: "24px",
-                boxShadow: "0 2px 4px 0 #00000026"
-              }} >
-                <Row>
-                  <Column>
-                    <Img src={job.companyLogo} alt={"company-logo"} height={60} width={60}
-                      style={{
-                        borderRadius: "16px",
-                        border: "1px solid #D9D9D9",
-                        padding: 2
-                      }}
-                    />
-                  </Column>
-                  <Column className={"py-0 px-2 w-full flex-1"}>
-                    <span className={"text-[10px] text-[#666666] my-1 p-0 block"}>Posted {relativeTime(job.postedAt)}</span>
-                    <span className={"font-semibold text-[14px] my-1 p-0 block"}>{job.title}</span>
-                    <span className = {"font-medium text-[12px] my-1 p-0 block"}>{job.companyName}</span>
-                  </Column>
-                  <Column>
-                    <Text className={"py-auto mx-auto text-center text-white my-3"} style={{
-                      backgroundImage: `url(${match(job.score).image})`,
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
-                      width: 60,
-                      height: 52,
-                      paddingTop: 8,
-                    }}>
-                      <span className={"font-medium text-[16px] my-0"}>{match(job.score).value}%</span>
-                      <span className={"text-[10px] block my-0"}>Match</span>
-                    </Text>
-                  </Column>
-                </Row>
-                <Row className={"pl-1 mt-3"}>
-                  <Column className={"w-full"}>
-                    <span className={"text-[10px] bg-[#E5FCF0] py-0.5 px-1.5"}
-                          style={{ borderRadius: "4px" }}
-                    >{formatNum(job.applicantsCount)} applicants</span>
-                  </Column>
-                  <Column className={"min-w-[90px]"}>
-                    <Button href={job.applyLink} className={"text-black py-2 px-3 text-[12px] font-medium"}
-                          style={{ backgroundColor: "#00E266", borderRadius: "8px"}}
-                    >
-                      Apply Now
-                    </Button>
-                  </Column>
-                </Row>
+            <span className={"font-semibold text-[14px] block mt-4 mb-3"}>Dear {firstName},</span>
+            <span className={"text-[14px] block mb-3"}>Check out these <span className={"font-semibold"}>must-read blogs</span> to boost your job search:</span>
+          </Section>
+
+          {/* Blog Section */}
+          <Section>
+            {blogs.map(({tag, title}, index)=>(
+              <Section key={index} className={"p-4 py-6 mb-3 bg-[#32B77F] rounded-lg"}>
+                <span className={"w-fit block text-[10px] mb-2.5 !bg-white px-2 py-1 font-medium rounded-md"}>{tag}</span>
+                <span className={"text-[14px] !text-white font-medium"}>{title}</span>
               </Section>
             ))}
-            <Text className={"my-0 mb-2 py-2"}>
-              New opportunities are added daily, don’t miss out!
-            </Text>
-            <Button href={links.viewMoreOpportunities} className={"text-black py-3 px-3 text-[14px] font-semibold text-center"}
-              style={{
-                borderRadius: "8px",
-                width: '340px',
-                background: "linear-gradient(to right, #00E266, #00E2B7)"
-              }}
-            >
-              View more opportunities
-            </Button>
           </Section>
-          <Section className={"my-4 py-6 px-3"} style={{
-            background: "linear-gradient(to right, #00E26605, #00E26610)",
-            borderBottom: "1px solid #D9D9D9"
-          }}>
-            <Text className={"text-center font-bold text-[20px] my-4"}>
-              Community Spotlight
-            </Text>
-            <Row className={"my-4"}>
-              <Column className={"mx-auto bg-white p-4 py-6"} style={{
-                border: "1px solid #D9D9D9",
-                borderRadius: "16px"
-              }}>
-                <span className={"text-[13px] block mb-2"}>{text}</span>
-                <span className={"block text-[12px] font-semibold mt-2 mb-0.5"}>{name}</span>
-                <span className={"block text-[10px] text-[#333333]"}>@{username}</span>
-              </Column>
-            </Row>
+
+          {/* User Tip */}
+          <Section className={"pb-2"} style={{ borderBottom: "1px solid #D9D9D9" }}>
+            <span className={"text-[14px] my-5 mb-3 block"}><span className={"font-bold"}>Pro Tip:</span> Stay ahead by applying these insights to your job search today!</span>
+            <span className={"text-[14px] mb-5 font-bold block"}>Happy job hunting!</span>
           </Section>
-          <Section className={"pt-2"}>
+
+          {/* Footer */}
+          <Section className={"pt-5"}>
             <Section className={"p-2 pb-8"} style={{
               borderBottom: "1px solid #D9D9D9"
             }}>
@@ -227,13 +166,9 @@ export const JobCard = (
   </Html>
 )
 
-JobCard.PreviewProps = {
-  jobOpenings: openings,
-  testimonial: {
-    text: "Job searching has never been this easy! The AI matches were perfect, and I got interview calls within hours.",
-    name: "Ishita Sharma",
-    username: "ishita"
-  }
+BlogCard.PreviewProps = {
+  firstName: "Jhalak",
+  blogs: blogs
 }
 
-export default JobCard;
+export default BlogCard;
