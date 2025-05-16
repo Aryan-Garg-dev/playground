@@ -19,8 +19,9 @@ export const JobCard = (
 ) => (
   <Html lang={"en"} dir={"ltr"}>
     <Head>
-      <meta charSet="UTF-8" />
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="x-apple-disable-message-reformatting" />
       <title>Latest Job Openings Just for You - myjobb</title>
       <Font
         fontFamily={"Inter"}
@@ -30,6 +31,49 @@ export const JobCard = (
           format: "woff2"
         }}
       />
+      <style type="text/css">
+        {`
+          a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+          }
+          body, table, td, a {
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+          }
+          table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+          }
+          img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+          }
+          body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: 100% !important;
+          }
+          /* Force Outlook to use 96 DPI */
+          <!--[if mso]>
+          <xml>
+            <o:OfficeDocumentSettings>
+              <o:AllowPNG />
+              <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+          </xml>
+          <![endif]-->
+        `}
+      </style>
     </Head>
     <Tailwind>
       <Body className={"bg-[#E2FCEDCC] mx-auto my-0"} style={{
