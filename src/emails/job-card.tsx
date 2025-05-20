@@ -3,7 +3,10 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import { formatNum, match, relativeTime } from "../utils.js";
-import { baseURL, JobOpening, jobOpenings as openings, links, logoURL } from "../constants.js";
+import { baseURL, JobOpening, jobOpenings as openings, links, logoURL, whiteBG, testimonial } from "../constants.js";
+import Footer from "../components/footer.js";
+import Header from "../components/header.js";
+import EmailHead from "../components/head.js";
 
 interface JobCardProps {
   jobOpenings: JobOpening[],
@@ -11,72 +14,18 @@ interface JobCardProps {
     name: string,
     username: string,
     text: string,
-  }
+  },
+  headerText?: string
 }
 
-export const JobCard = (
-  {jobOpenings, testimonial: { text, username, name }}: JobCardProps
+export const JobCard = ({
+    jobOpenings,
+    testimonial: { text, username, name },
+    headerText = "We Found Jobs That Fit You Perfectly!"
+  }: JobCardProps
 ) => (
   <Html lang={"en"} dir={"ltr"}>
-    <Head>
-      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <meta name="x-apple-disable-message-reformatting"/>
-      <meta name="color-scheme" content="light dark"/>
-      <meta name="supported-color-schemes" content="light"/>
-      <title>Latest Job Openings Just for You - myjobb</title>
-      <Font
-        fontFamily={"Inter"}
-        fallbackFontFamily={["Verdana"]}
-        webFont={{
-          url: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-          format: "woff2"
-        }}
-      />
-      <style type="text/css">
-        {`
-          a[x-apple-data-detectors] {
-            color: inherit !important;
-            text-decoration: none !important;
-            font-size: inherit !important;
-            font-family: inherit !important;
-            font-weight: inherit !important;
-            line-height: inherit !important;
-          }
-          body, table, td, a {
-          -webkit-text-size-adjust: 100%;
-          -ms-text-size-adjust: 100%;
-          }
-          table, td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-          }
-          img {
-            -ms-interpolation-mode: bicubic;
-            border: 0;
-            height: auto;
-            line-height: 100%;
-            outline: none;
-            text-decoration: none;
-          }
-          body {
-            margin: 0;
-            padding: 0;
-            width: 100% !important;
-            height: 100% !important;
-          }
-          /* Force Outlook to use 96 DPI */
-          <!--[if mso]>
-          <xml>
-            <o:OfficeDocumentSettings>
-              <o:AllowPNG />
-              <o:PixelsPerInch>96</o:PixelsPerInch>
-            </o:OfficeDocumentSettings>
-          </xml>
-          <![endif]-->
-        `}
-      </style>
-    </Head>
+    <EmailHead title={"Latest Job Openings Just for You - myjobb"} />
     <Tailwind>
       <Body className={"bg-[#E2FCEDCC] mx-auto my-0"} style={{
         fontFamily: "'Inter', Verdana",
@@ -84,21 +33,12 @@ export const JobCard = (
         padding: 0,
         backgroundColor: "#E2FCEDCC !important"
       }}>
-        <Preview>Stay updated with the latest job openings tailored just for you.</Preview>
+        <Preview>{headerText}</Preview>
         <Container className={"mx-auto max-w-sm py-8 px-4 !bg-white"} style={{
           backgroundColor: "#fff !important",
           color: "#000 !important",
         }}>
-          <Img
-            src={logoURL} alt={"myjobb"}
-            width={98} height={26}
-            className={"mx-auto"}
-          />
-          <Heading className={"p-8 font-bold text-lg rounded-md"} style={{
-            background: "linear-gradient(to bottom, #00E2B740, #00E2B700)"
-          }}>
-            We Found Jobs That Fit You Perfectly!
-          </Heading>
+          <Header headerText={headerText} />
           <Text className={"mt-8"}>Here are the top relevant job openings for you!</Text>
           <Section>
             {jobOpenings.map((job, index)=>(
@@ -118,20 +58,22 @@ export const JobCard = (
                     />
                   </Column>
                   <Column className={"py-0 px-2 w-full flex-1"}>
-                    <span className={"text-[10px] text-[#666666] my-1 p-0 block"}>Posted {relativeTime(job.postedAt)}</span>
-                    <span className={"font-semibold text-[14px] my-1 p-0 block"}>{job.title}</span>
-                    <span className = {"font-medium text-[12px] my-1 p-0 block"}>{job.companyName}</span>
+                    <span className={"text-[10px] text-[#666666] my-1 p-0 block line-clamp-1"}>Posted {relativeTime(job.postedAt)}</span>
+                    <span className={"font-semibold text-[14px] my-1 p-0 block line-clamp-1"}>{job.title}</span>
+                    <span className = {"font-medium text-[12px] my-1 p-0 block line-clamp-1"}>{job.companyName}</span>
                   </Column>
                   <Column>
-                    <Text className={"py-auto mx-auto text-center text-white my-3"} style={{
-                      backgroundImage: `url(${match(job.score).image})`,
-                      backgroundRepeat: "no-repeat",
-                      backgroundSize: "cover",
+                    <Text className={"py-auto mx-auto text-center text-black font-semibold my-5"} style={{
                       width: 60,
                       height: 52,
                       paddingTop: 8,
+                      borderStyle: "solid",
+                      borderWidth: "3px",
+                      borderColor: match(job.score).borderColor,
+                      backgroundColor: match(job.score).bgColor,
+                      borderRadius: "16px"
                     }}>
-                      <span className={"font-medium text-[16px] my-0"}>{match(job.score).value}%</span>
+                      <span className={"text-[16px] font-bold mt-0.5 -mb-0.5 block"}>{match(job.score).value}%</span>
                       <span className={"text-[10px] block my-0"}>Match</span>
                     </Text>
                   </Column>
@@ -144,7 +86,7 @@ export const JobCard = (
                   </Column>
                   <Column className={"min-w-[90px]"}>
                     <Button href={job.applyLink} className={"text-black py-2 px-3 text-[12px] font-medium"}
-                          style={{ backgroundColor: "#00E266", borderRadius: "8px"}}
+                          style={{ backgroundColor: "#66EEA3", borderRadius: "8px"}}
                     >
                       Apply Now
                     </Button>
@@ -152,27 +94,30 @@ export const JobCard = (
                 </Row>
               </Section>
             ))}
-            <Text className={"my-0 mb-2 py-2"}>
+            <Text className={"mt-8 mb-2 py-2"}>
               New opportunities are added daily, don’t miss out!
             </Text>
-            <Button href={links.viewMoreOpportunities} className={"text-black py-3 px-3 text-[14px] font-semibold text-center"}
-              style={{
-                borderRadius: "8px",
-                width: '340px',
-                background: "linear-gradient(to right, #00E266, #00E2B7)"
-              }}
-            >
-              View more opportunities
-            </Button>
+            <center>
+              <Button href={links.viewMoreOpportunities} className={"mx-auto text-black py-3 px-3 text-[14px] mb-8 font-semibold text-center"}
+                style={{
+                  borderRadius: "8px",
+                  width: 'fit-content',
+                  background: "linear-gradient(to right, #00E266CC, #00E2B7CC)"
+                }}
+              >
+                View more opportunities
+              </Button>
+            </center>
           </Section>
-          <Section className={"my-4 py-6 px-3"} style={{
-            background: "linear-gradient(to right, #00E26605, #00E26610)",
-            borderBottom: "1px solid #D9D9D9"
+          <Section className={"my-4 pt-12 pb-16 px-3"} style={{
+            background: "linear-gradient(to bottom, #00E2B700, #00E2B720)",
+            borderBottom: "1px solid #D9D9D9",
+            borderRadius: 8
           }}>
-            <Text className={"text-center font-bold text-[20px] my-4"}>
+            <Text className={"text-center font-bold text-[26px] mb-10"}>
               Community Spotlight
             </Text>
-            <Row className={"my-4"}>
+            <Row>
               <Column className={"mx-auto bg-white p-4 py-6"} style={{
                 border: "1px solid #D9D9D9",
                 borderRadius: "16px"
@@ -183,44 +128,7 @@ export const JobCard = (
               </Column>
             </Row>
           </Section>
-          <Section className={"pt-2"}>
-            <Section className={"p-2 pb-8"} style={{
-              borderBottom: "1px solid #D9D9D9"
-            }}>
-              <Img
-                src={logoURL} alt={"myjobb"}
-                width={98} height={26}
-                className={"mx-auto"}
-              />
-              <Section className={"w-fit mt-4 mb-2 mx-auto"}>
-                <Link href={links.linkedin}>
-                  <Img className={"inline mx-1"} src={baseURL + "linkedin.png"} height={32} width={32} alt={"linkedin"} />
-                </Link>
-                <Link href={links.telegram}>
-                  <Img className={"inline mx-1"} src={baseURL + "facebook.png"} height={32} width={32} alt={"telegram"} />
-                </Link>
-                <Link className={links.email}>
-                  <Img className={"inline mx-1"} src={baseURL + "email.png"} height={32} width={32} alt={"mail"} />
-                </Link>
-              </Section>
-              <Section className={"w-fit mx-auto"}>
-                <Link href={links.aboutUs} className={"mx-2 text-black text-[13px] font-medium"}>About Us</Link>
-                <Link href={links.blogs} className={"mx-2 text-black text-[13px] font-medium"}>Blogs</Link>
-              </Section>
-            </Section>
-            <Section className={"pt-4"}>
-              <Text className={"text-center text-[13px] font-medium my-1"}>All rights reserved © 2025 myjobb technologies</Text>
-              <Section className={"w-fit mx-auto"}>
-                <Link className={"mx-2 text-black text-[13px] font-medium"} href={links.privacyPolicy}>Privacy Policy</Link>
-                <Link className={"mx-2 text-black text-[13px] font-medium"} href={links.TOS}>TOS</Link>
-              </Section>
-              <Section className={"w-fit mx-aut mt-2"}>
-                <u>
-                  <Link href={links.unsubscribe} className={"text-[13px] font-medium text-black"}>Unsubscribe</Link>
-                </u>
-              </Section>
-            </Section>
-          </Section>
+          <Footer />
         </Container>
       </Body>
     </Tailwind>
@@ -229,11 +137,7 @@ export const JobCard = (
 
 JobCard.PreviewProps = {
   jobOpenings: openings,
-  testimonial: {
-    text: "Job searching has never been this easy! The AI matches were perfect, and I got interview calls within hours.",
-    name: "Ishita Sharma",
-    username: "ishita"
-  }
+  testimonial: testimonial
 }
 
 export default JobCard;

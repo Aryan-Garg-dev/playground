@@ -44,14 +44,20 @@ export function relativeTime(
 export function match(matchScore: number){
   const data = {
     value: parseInt((matchScore * 100).toFixed(0)),
-    image: baseURL + "green.png"
+    image: baseURL + "green.png",
+    bgColor: "#E5FCF0",
+    borderColor: "#00E266"
   }
   if (matchScore >= 0 && matchScore <= .49){
     data.image = baseURL + "red.png";
+    data.bgColor = "#D853000D";
+    data.borderColor = "#D85300";
   }
 
   else if (matchScore >= .5 && matchScore <= 0.74) {
     data.image = baseURL + "blue.png"
+    data.bgColor = "#3825980D";
+    data.borderColor = "#382598";
   }
 
   return data;

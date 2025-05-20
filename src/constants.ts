@@ -59,18 +59,20 @@ export const jobOpenings: JobOpening[] = [
 export interface Blog {
   tag: string,
   title: string,
+  link: string
 }
 
 export const blogs: Blog[] = [
-  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
-  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
-  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
-  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
-  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community", link: "https://google.com/" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community", link: "https://google.com/" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community", link: "https://google.com/" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community", link: "https://google.com/" },
+  { tag: "Trending", title: "Top Tech Hubs for UX Designers in 2025: Opportunities and Community", link: "https://google.com/" },
 ]
 
 export const baseURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/";
-export const logoURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/logo.png"
+export const logoURL = "https://myjobb-job.s3.ap-south-1.amazonaws.com/emails/logo.png";
+export const whiteBG = "https://res.cloudinary.com/dasl0rqs5/image/upload/v1747376406/white-png-base_sbidx9.jpg";
 
 export const links = {
   linkedin: "https://linkedin.com/company/myjobbai",
