@@ -2,12 +2,12 @@ import {
   Html, Button, Heading, Head, Container, Row, Section, Column, Font, Hr, Img, Link, Text, Tailwind, Body, Preview
 } from "@react-email/components";
 import * as React from "react";
-import { Blog, blogs } from "../constants.js";
-import Footer from "../components/footer.js";
-import Header from "../components/header.js";
-import EmailHead from "../components/head.js";
+import { Blog, blogs } from "@/mail-service/constants";
+import Footer from "@/mail-service/components/footer";
+import Header from "@/mail-service/components/header";
+import EmailHead from "@/mail-service/components/head";
 
-interface BlogCardProps {
+export interface BlogCardProps {
   firstName: string,
   blogs: Blog[],
   headerText?: string,

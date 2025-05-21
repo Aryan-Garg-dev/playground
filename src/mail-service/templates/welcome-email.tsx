@@ -2,12 +2,12 @@ import {
   Html, Button, Container, Section, Tailwind, Body, Preview
 } from "@react-email/components";
 import * as React from "react";
-import Header from "../components/header.js";
-import Footer from "../components/footer.js";
-import EmailHead from "../components/head.js";
-import { links } from "../constants.js";
+import Header from "@/mail-service/components/header";
+import Footer from "@/mail-service/components/footer";
+import EmailHead from "@/mail-service/components/head";
+import { links } from "@/mail-service/constants";
 
-interface WelcomeEmailProps {
+export interface WelcomeEmailProps {
   firstName: string,
   headerText?: string,
 }
