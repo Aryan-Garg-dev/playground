@@ -1,4 +1,4 @@
-import { logoURL, whiteBG } from "../constants.js";
+import { logoURL, whiteBG } from "@/mail-service/constants";
 import { Heading, Img, Section } from "@react-email/components";
 import * as React from "react";
 

@@ -1,5 +1,5 @@
 import { Img, Link, Section, Text } from "@react-email/components";
-import { baseURL, links, logoURL, whiteBG } from "../constants.js";
+import { baseURL, links, logoURL, whiteBG } from "@/mail-service/constants";
 import * as React from "react";
 
 interface IFooter {

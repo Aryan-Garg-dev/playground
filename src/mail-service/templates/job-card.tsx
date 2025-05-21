@@ -2,13 +2,13 @@ import {
   Html, Button, Heading, Head, Container, Row, Section, Column, Font, Hr, Img, Link, Text, Tailwind, Body, Preview
 } from "@react-email/components";
 import * as React from "react";
-import { formatNum, match, relativeTime } from "../utils.js";
-import { baseURL, JobOpening, jobOpenings as openings, links, logoURL, whiteBG, testimonial } from "../constants.js";
-import Footer from "../components/footer.js";
-import Header from "../components/header.js";
-import EmailHead from "../components/head.js";
+import { formatNum, match, relativeTime } from "@/mail-service/utils";
+import { baseURL, JobOpening, jobOpenings as openings, links, logoURL, whiteBG, testimonial } from "@/mail-service/constants";
+import Footer from "@/mail-service/components/footer";
+import Header from "@/mail-service/components/header";
+import EmailHead from "@/mail-service/components/head";
 
-interface JobCardProps {
+export interface JobCardProps {
   jobOpenings: JobOpening[],
   testimonial: {
     name: string,
