@@ -2,11 +2,11 @@ import {
   Html, Button, Container, Section, Tailwind, Body, Preview
 } from "@react-email/components";
 import * as React from "react";
-import Header from "../components/header.js";
-import Footer from "../components/footer.js";
-import EmailHead from "../components/head.js";
+import Header from "@/mail-service/components/header";
+import Footer from "@/mail-service/components/footer";
+import EmailHead from "@/mail-service/components/head";
 
-interface CompleteProfileProps {
+export interface CompleteProfileProps {
   firstName: string,
   completeProfileLink: string,
   headerText?: string

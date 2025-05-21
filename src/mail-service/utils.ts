@@ -1,4 +1,4 @@
-import { baseURL } from "./constants.js";
+import { baseURL } from "@/mail-service/constants";
 
 export interface RelativeTimeOptions {
   short: boolean, locale: Intl.LocalesArgument
